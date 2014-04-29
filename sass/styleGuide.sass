@@ -1,0 +1,430 @@
+@import abstracts
+@import normalize
+
+//=====================================================
+// abstracts
+
+=sg-typo1
+  font-size: 25px
+  line-height: 1.4
+
+=sg-typo2
+  font-size: 14px
+  line-height: 1.5
+
+=sg-typo3
+  font-size: 12px
+  line-height: 1.5
+
+$sg-color1: #387B8C
+$sg-color2: #72A7A1
+$sg-color3: #98BFB7
+$sg-color4: #081B23 // navy
+$sg-color5: #EFE8D0 // white
+$sg-color6: #333 // black
+$sg-color7: #F7F3E8 // beige
+
+%sg-codeLabel
+  position: absolute
+  border: 1px solid #ccc
+  border-top: 0
+  border-left: 0
+  top: 0
+  left: 0
+  padding: 4px 9px 3px
+  +sg-typo3
+
+
+//=====================================================
+// base
+
+html, body
+  padding: 0
+  margin: 0
+
+html
+  background: $sg-color7
+
+//=====================================================
+// blocks
+
+.sg-gLayout
+  padding: 0 0 0 300px
+  .sg-gLayout__side
+    position: fixed
+    width: 280px
+    padding: 10px 10px 0
+    background: $sg-color5
+    left: 0
+    top: 0
+    bottom: 0
+    box-shadow: 0 0 8px rgba(0,0,0,.2)
+    overflow-x: hidden
+    overflow-y: auto
+  .sg-gLayout__main
+    padding: 20px 20px 20px 30px
+    min-width: 300px
+    
+
+.sg-sideHd
+  margin: 0 0 15px
+  border-bottom: 1px dashed $sg-color6
+  color: $sg-color6
+  .sg-sideHd__title
+    text-align: center
+    padding: 20px 0 20px
+    +sg-typo1
+  .sg-sideHd__select
+    padding: 0 20px 20px
+    select
+      display: block
+      width: 100%
+
+.sg-sideList
+  padding: 0
+  margin: 0
+  +sg-typo3
+  li
+    list-style-type: disc
+    margin: 0 0 0 25px
+    padding: 0 0 8px
+    a
+      display: block
+      color: $sg-color6
+
+.sg-pageTitleH
+  padding: 0 0 10px
+  margin: 0
+  border-bottom: 1px solid #{$sg-color6}
+  +sg-typo1
+
+//=====================================================
+// styleGuide generated elements
+
+.sg-blockExpContainer
+
+  > h1
+    +sg-typo1
+    margin: 0
+    padding: 20px 0 12px
+
+  > p
+    +sg-typo2
+    margin: 0
+    padding: 0 0 18px
+
+  .codeBlock
+    background-color: #f9f9f9
+    border-top: 1px solid #ccc
+    border-bottom-left-radius: 4px
+    border-bottom-right-radius: 4px
+    padding: 10px
+    +sg-typo2
+    pre
+      padding: 0
+      margin: 0
+
+  > .codeExample
+    border: 1px solid #ccc
+    border-radius: 4px
+    margin: 0 0 20px
+    background: #fff
+    > .exampleOutput
+      padding: 35px 10px 10px
+      position: relative
+      &:before
+        content: 'Example'
+        @extend %sg-codeLabel
+    > .codeBlock
+      border-radius: 0 0 4px 4px
+
+  > .codeBlock
+    border: 1px solid #ccc
+    margin: 0 0 20px
+    border-radius: 4px
+    position: relative
+
+  > .codeBlock.jsExample
+    padding-top: 35px
+    border-radius: 4px
+    &:before
+      content: 'JS Example'
+      @extend %sg-codeLabel
+      
+//=====================================================
+// color palette
+
+.sg-palettes
+  overflow: hidden
+
+%sg-colorPalette
+  height: 30px
+  line-height: 30px
+  font-size: 13px
+  text-shadow: 1px 1px rgba(0, 0, 0, .3)
+  padding: 0 10px
+  margin: 4px
+  width: 200px
+  float: left
+  border: 1px solid #000
+  &:before
+    display: block
+    height: 30px
+    line-height: 30px
+
+@for $i from 1 through length($g-colors)
+  .sg-colorPalette#{$i}
+    $color: nth($g-colors, $i)
+    @extend %sg-colorPalette
+    background: $color
+    &:before
+      content: "nth($g-colors, " + $i + ") - " + $color
+
+
+//=====================================================
+// gitHub code highlight
+
+hll
+  background-color: #ffffcc
+
+.c
+  color: #999988
+  font-style: italic
+
+/* Comment
+
+.err
+  color: #a61717
+  background-color: #e3d2d2
+
+/* Error
+
+.k, .o
+  color: #000000
+  font-weight: bold
+
+/* Keyword
+/* Operator
+
+.cm
+  color: #999988
+  font-style: italic
+
+/* Comment.Multiline
+
+.cp
+  color: #999999
+  font-weight: bold
+  font-style: italic
+
+/* Comment.Preproc
+
+.c1
+  color: #999988
+  font-style: italic
+
+/* Comment.Single
+
+.cs
+  color: #999999
+  font-weight: bold
+  font-style: italic
+
+/* Comment.Special
+
+.gd
+  color: #000000
+  background-color: #ffdddd
+
+/* Generic.Deleted
+
+.ge
+  color: #000000
+  font-style: italic
+
+/* Generic.Emph
+
+.gr
+  color: #aa0000
+
+/* Generic.Error
+
+.gh
+  color: #999999
+
+/* Generic.Heading
+
+.gi
+  color: #000000
+  background-color: #ddffdd
+
+/* Generic.Inserted
+
+.go
+  color: #888888
+
+/* Generic.Output
+
+.gp
+  color: #555555
+
+/* Generic.Prompt
+
+.gs
+  font-weight: bold
+
+/* Generic.Strong
+
+.gu
+  color: #aaaaaa
+
+/* Generic.Subheading
+
+.gt
+  color: #aa0000
+
+/* Generic.Traceback
+
+.kc, .kd, .kn, .kp, .kr
+  color: #000000
+  font-weight: bold
+
+/* Keyword.Constant
+/* Keyword.Declaration
+/* Keyword.Namespace
+/* Keyword.Pseudo
+/* Keyword.Reserved
+
+.kt
+  color: #445588
+  font-weight: bold
+
+/* Keyword.Type
+
+.m
+  color: #009999
+
+/* Literal.Number
+
+.s
+  color: #d01040
+
+/* Literal.String
+
+.na
+  color: #008080
+
+/* Name.Attribute
+
+.nb
+  color: #0086B3
+
+/* Name.Builtin
+
+.nc
+  color: #445588
+  font-weight: bold
+
+/* Name.Class
+
+.no
+  color: #008080
+
+/* Name.Constant
+
+.nd
+  color: #3c5d5d
+  font-weight: bold
+
+/* Name.Decorator
+
+.ni
+  color: #800080
+
+/* Name.Entity
+
+.ne, .nf, .nl
+  color: #990000
+  font-weight: bold
+
+/* Name.Exception
+/* Name.Function
+/* Name.Label
+
+.nn
+  color: #555555
+
+/* Name.Namespace
+
+.nt
+  color: #000080
+
+/* Name.Tag
+
+.nv
+  color: #008080
+
+/* Name.Variable
+
+.ow
+  color: #000000
+  font-weight: bold
+
+/* Operator.Word
+
+.w
+  color: #bbbbbb
+
+/* Text.Whitespace
+
+.mf, .mh, .mi, .mo
+  color: #009999
+
+/* Literal.Number.Float
+/* Literal.Number.Hex
+/* Literal.Number.Integer
+/* Literal.Number.Oct
+
+.sb, .sc, .sd, .s2, .se, .sh, .si, .sx
+  color: #d01040
+
+/* Literal.String.Backtick
+/* Literal.String.Char
+/* Literal.String.Doc
+/* Literal.String.Double
+/* Literal.String.Escape
+/* Literal.String.Heredoc
+/* Literal.String.Interpol
+/* Literal.String.Other
+
+.sr
+  color: #009926
+
+/* Literal.String.Regex
+
+.s1
+  color: #d01040
+
+/* Literal.String.Single
+
+.ss
+  color: #990073
+
+/* Literal.String.Symbol
+
+.bp
+  color: #999999
+
+/* Name.Builtin.Pseudo
+
+.vc, .vg, .vi
+  color: #008080
+
+/* Name.Variable.Class
+/* Name.Variable.Global
+/* Name.Variable.Instance
+
+.il
+  color: #009999
+
+/* Literal.Number.Integer.Long

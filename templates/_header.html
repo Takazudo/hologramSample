@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>My Style Guide <%= title %></title>
+
+    <!-- Styleguide CSS -->
+    <link rel="stylesheet" href="build/css/styleGuide.css">
+
+    <!-- CSS to be documented -->
+    <link rel="stylesheet" href="build/css/screen.css">
+
+    <!-- Main libraries -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script>
+    $(function() {
+      $('.sg-sidePageSelect').each(function(i, el) {
+        var $el = $(el);
+        $el.on('change', function() {
+          var url = $el.val();
+          if(!url) {
+            return;
+          }
+          location.href = url;
+        });
+      });
+    });
+    </script>
+
+</head>
+<body>
+<div class="sg-gLayout">
+  <div class="sg-gLayout__side">
+  
+    <div class="sg-sideHd">
+      <div class="sg-sideHd__title">StyleGuide</div>
+      <div class="sg-sideHd__select"><select class="sg-sidePageSelect">
+        <option>select the page</option>
+        <option value="abstracts.html">Abstracts</option>
+        <option value="main_area.html">Main Area</option>
+      </select></div>
+    </div>
+    
+    <ul class="sg-sideList">
+      <% @blocks.each do |block| %> 
+        <li><a href="#<%= block[:name] %>"><%= block[:title] %></a></li>
+      <% end %>
+    </ul>
+    
+  <!-- /sg-gLayout__side --></div>
+  
+  <div class="sg-gLayout__main">
+    <div class="sg-pageTitleH"><%= title %></div>
+    <div class="sg-blockExpContainer">
+    
